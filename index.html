@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Pomodoro</title>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Pomodoro Timer</h1>
+        <p class="lead">Ciclos personalizáveis + histórico de produtividade (local)</p>
+      </div>
+      <div class="topbar-small">
+        <div class="tag" id="statusTag">Pronto</div>
+        <div class="tag" id="cycleTag">Ciclo 0/0</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <div class="timer" aria-live="polite">
+          <div class="label-small" id="phaseLabel">Trabalho ou Estudo</div>
+          <div class="time" id="timeDisplay">25:00</div>
+          <div class="controls">
+            <button id="startBtn" class="primary">Iniciar</button>
+            <button id="pauseBtn">Pausar</button>
+            <button id="resetBtn" class="ghost">Resetar</button>
+          </div>
+
+          <div class="settings" style="width: 100%;">
+            <div style="display: flex; gap: 10px;">
+              <div style="flex: 1;">
+                <label>Minutos de Trabalho/Estudo</label>
+                <input type="number" id="inputWork" min="1" max="60" value="25">
+              </div>
+              <div style="width: 120px;">
+                <label>Minutos de pausa</label>
+                <input type="number" id="inputBreak" min="1" max="60" value="5">
+              </div>
+            </div>
+
+            <div style="display:flex; gap:9px; align-items:center;">
+              <div style="flex:1;">
+                <label>Nº de ciclos (work+break)</label>
+                <input type="number" id="inputCycles" min="1" max="20" value="4">
+              </div>
+              <div style="width:140px;">
+                <label>Auto-start próximo</label>
+                <select id="selAuto">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 9px; margin-top: 9px;">
+              <button id="applyBtn">Aplicar</button>
+              <button id="clearHistoryBtn" class="ghost">Limpar Histórico</button>
+              <button id="exportBtn" class="ghost">Exportar JSON</button>
+            </div>
+          </div>
+        </div>
+        <footer>Dica: ajuste os minutos e pressione "Aplicar" para atualizar o timer.</footer>
+      </section>
+
+      <aside class="card">
+        <h3 style="margin-top: 0;">Histórico & Estatísticas</h3>
+        <div class="small">Registra ciclos completados com data/hora no armazenamento local.</div>
+
+        <div style="display: flex; gap: 9px; margin-top: 10px; align-items: center;">
+          <div style="flex: 1;">
+            <div class="small">Total concluídos</div>
+            <div id="totalCompleted" style="font-size: 20px; font-weight: 600;">0</div>
+          </div>
+          <div style="width: 130px;">
+            <div class="small">Hoje</div>
+            <div id="todayCompleted" style="font-size: 20px; font-weight: 600;">0</div>
+          </div>
+        </div>
+
+        <div class="history-list" id="historyList" aria-live="polite"></div>
+
+        <div style="display: flex; gap: 9px; margin-top: 8px;">
+          <button id="importBtn">Importar JSON</button>
+          <input type="file" id="fileInput" accept="application/json" style="display: none;">
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
